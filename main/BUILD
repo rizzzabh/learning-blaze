@@ -5,5 +5,6 @@ cc_binary(
     srcs = ["hello.cc"],
     deps = [
         "//utils:checker_lib",
+        "//proto:submission_cc_proto", 
     ],
 )

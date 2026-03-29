@@ -1,18 +1,24 @@
 #include <iostream>
 #include <string>
-#include "utils/checker.h" 
+#include "utils/checker.h"
+
+#include "proto/submission.pb.h" 
 
 int main() {
-    std::string expected_output = "42";
-    std::string user_output = "42";
 
-    std::cout << "Running submission..." << std::endl;
+    grading_system::Submission sub;
     
-    if (check_answer(expected_output, user_output)) {
-        std::cout << "Verdict: Accepted (AC)" << std::endl;
-    } else {
-        std::cout << "Verdict: Wrong Answer (WA)" << std::endl;
-    }
+
+    sub.set_submission_id(101);
+    sub.set_user_handle("tourist");
+    sub.set_source_code("int main() { return 0; }");
+    sub.set_language(grading_system::CPP);
+
+    std::string serialized_data;
+    sub.SerializeToString(&serialized_data);
+
+    std::cout << "Successfully created submission for user: " << sub.user_handle() << std::endl;
+    std::cout << "Serialized binary size: " << serialized_data.size() << " bytes!" << std::endl;
 
     return 0;
 }

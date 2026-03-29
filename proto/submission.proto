@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package grading_system; 
+
+enum Language {
+  LANGUAGE_UNSPECIFIED = 0;
+  CPP = 1;
+  PYTHON = 2;
+}
+
+message Submission {
+  int32 submission_id = 1;
+  string user_handle = 2;
+  string source_code = 3;
+  Language language = 4;
+}
